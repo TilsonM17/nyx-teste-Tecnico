@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Route::post('/search',function(){
-    echo "Estou no Post";
+    return ['txt' => 'ola'];
 })->name("pesquisar");
