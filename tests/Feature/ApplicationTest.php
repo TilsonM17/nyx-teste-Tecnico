@@ -22,9 +22,18 @@ class ApplicationTest extends TestCase
     /**
      * @test
      */
-    public function test_if_homepage_is_load()
+    public function test_validar_se_a_homepage_contentem_o_titulo_da_pagina()
     {
         $response = $this->get('/')
-            ->assertSeeText("wonderful");
+            ->assertSeeText("Alugue um Filme ou Serie");
+    }
+
+     /**
+     * @test
+     */
+    public function test_validar_se_rota_de_pesquisa_funciona()
+    {
+        $response = $this->post('/search')
+            ->assertStatus(200);
     }
 }
