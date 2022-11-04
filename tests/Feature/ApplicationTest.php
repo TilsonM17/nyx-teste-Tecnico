@@ -22,7 +22,7 @@ class ApplicationTest extends TestCase
     /**
      * @test
      */
-    public function test_validar_se_a_homepage_contentem_o_titulo_da_pagina()
+    public function test_validar_se_a_homepage_contentem_algum_conteudo()
     {
         $response = $this->get('/')
             ->assertSeeText("Alugue um Filme ou Serie");
@@ -35,5 +35,17 @@ class ApplicationTest extends TestCase
     {
         $response = $this->post('/search')
             ->assertStatus(200);
+    }
+
+    /**
+     * @test
+     */
+    public function test_validar_se_rota_de_pesquisa_retorna_valor_desejado()
+    {
+        $this->post('/search')
+            ->assertStatus(200)
+            ->assertJson([
+                'txt' => 'ola',
+            ]);
     }
 }
