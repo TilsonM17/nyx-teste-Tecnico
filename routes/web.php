@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/search',function(){
-    return ['txt' => 'ola'];
-})->name("pesquisar");
+Route::post('/search',[MainController::class,'index'])->name("pesquisar");
