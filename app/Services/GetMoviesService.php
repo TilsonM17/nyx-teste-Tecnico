@@ -13,13 +13,13 @@ class GetMoviesService
 
     public function __construct()
     {
-        $this->url = $this->constructString();
         $this->key = config('themoviedb.key');
+        $this->url = $this->constructString();
     }
 
     public function searchMovies(string $querySearch)
     {
-        return $this->url.$querySearch;
+        return Http::get($this->url . $querySearch);
     }
 
     /**
@@ -28,6 +28,6 @@ class GetMoviesService
      */
     private function constructString(): string
     {
-        return config('themoviedb.url').'?api_key='.$this->key.'&query='; 
+        return config('themoviedb.url') . '?api_key=' . $this->key . '&query=';
     }
 }
