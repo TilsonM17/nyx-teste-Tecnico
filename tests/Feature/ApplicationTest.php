@@ -31,21 +31,18 @@ class ApplicationTest extends TestCase
      /**
      * @test
      */
-    public function test_validar_se_rota_de_pesquisa_funciona()
+    public function test_validar_requisicao_na_api_moviedb()
     {
-        $response = $this->post('/search')
+        $this->post('/search',['txt_pesquisa' => 'liga da justiça'])
             ->assertStatus(200);
     }
 
     /**
      * @test
      */
-    public function test_validar_se_rota_de_pesquisa_retorna_valor_desejado()
+    public function test_validar_se_requisicao_retorna_uma_view()
     {
-        $this->post('/search')
-            ->assertStatus(200)
-            ->assertJson([
-                'txt' => 'ola',
-            ]);
+        $response = $this->post('/search',['txt_pesquisa' => 'liga da justiça']);
+        $response->assertViewIs('pages.list_movies');
     }
 }
