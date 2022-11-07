@@ -26,15 +26,18 @@
         </div>
         <hr>
         @foreach ($movies->results as $movie)
-            <div class="col-md-4 border border-end-0">
+            <div class="col-md-4 p-2 my-3 border border-end-0">
                 <p class="h3 text-center">{{ $movie->title }}</p>
                 <figure class="figure">
                     <img src="{{ config('themoviedb.img_url') . $movie->poster_path }}"
                         class="img-thumbnail rounded mx-auto d-block" alt="Imagem de Capa">
-                    <figcaption class="figure-caption">{{ $movie->overview ?? 'Não foi forneçido uma descrição.' }}</figcaption>
+                    <figcaption class="figure-caption">{{ $movie->overview ?? 'Não foi forneçido uma descrição.' }}
+                    </figcaption>
                 </figure>
                 <p>Data de Lançamento: <strong> {{ $movie->release_date ?? 'DD/MM/YY' }} </strong> </p>
-
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{{ route('alugar', ['id' => $movie->id]) }}" class="btn btn-outline-primary my-4">Alugar</a>
+                </div>
             </div>
         @endforeach
 
@@ -49,7 +52,7 @@
             <ul class="pagination">
                 @for ($i = 1; $i < $movies->total_pages; $i++)
                     <li class="page-item">
-                        <a class="page-link" href="{{ route('paginator',['pageNumber' => $i]) }}">{{ $i }}</a>
+                        <a class="page-link" href="{{ route('paginator', ['pageNumber' => $i]) }}">{{ $i }}</a>
                     </li>
                 @endfor
                 {{--

@@ -22,3 +22,5 @@ Route::post('/search', [MainController::class, 'search'])->name("pesquisar");
 Route::get('/list',[MainController::class,'listMovies'])->name('list');
 
 Route::get('/page/{pageNumber}', [MainController::class,'paginator'])->name('paginator');
+
+Route::get('/alugar/{id}',[MainController::class,'alugarFilme'])->name('alugar');
