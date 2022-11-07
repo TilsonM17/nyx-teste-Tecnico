@@ -17,11 +17,6 @@ class GetMoviesService
         $this->url = $this->constructString();
     }
 
-    public function searchMovies(string $querySearch)
-    {
-        return Http::get($this->url . $querySearch);
-    }
-
     /**
      * @return string
      * 
@@ -29,5 +24,22 @@ class GetMoviesService
     private function constructString(): string
     {
         return config('themoviedb.url') . '?api_key=' . $this->key . '&query=';
+    }
+
+    /**
+     * @param string $queryString
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function searchMovies(string $querySearch): \Illuminate\Http\Client\Response
+    {
+        return Http::get($this->url . $querySearch);
+    }
+    /**
+     * @param string $queryString
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function searchMoviesForPaginator(string $querySearch,int $pageNumber): \Illuminate\Http\Client\Response
+    {
+        return Http::get($this->url . $querySearch.'&page='.$pageNumber);
     }
 }
