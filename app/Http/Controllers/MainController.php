@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\PaginationHelper;
+use App\Http\Requests\AlugarSubmitRequest;
 use App\Http\Requests\SearchRequest;
 use App\Services\GetMoviesService;
 use Illuminate\Http\Request;
@@ -55,11 +56,23 @@ class MainController extends Controller
     {
         $chaveRedis = unserialize(Redis::get('key'));
         $dataObject = unserialize(Redis::get($chaveRedis));
-        //dd($chaveRedis,$dataObject);
         return view('pages.list_movies', ['movies' => $dataObject]);
     }
 
     public function alugarFilme(int $id)
     {
+        $chave = 'movie_' . $id;
+        if (!unserialize(Redis::get($chave))) {
+            Redis::set($chave, serialize(
+                $this->getMoviesServices->searchMoviesById($id)->object()
+            ));
+        }
+
+        return view('pages.form_shop_movies', ['movie' => unserialize(Redis::get($chave))]);
+    }
+
+    public function alugarFilmeSubmit(AlugarSubmitRequest $request)
+    {
+        
     }
 }

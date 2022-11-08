@@ -26,6 +26,11 @@ class GetMoviesService
         return config('themoviedb.url') . '?api_key=' . $this->key . '&query=';
     }
 
+    private function constructStringById(int $id): string
+    {
+        return config('themoviedb.url_by_id') . $id . '?api_key=' . config('themoviedb.key');
+    }
+
     /**
      * @param string $queryString
      * @return \Illuminate\Http\Client\Response
@@ -38,8 +43,18 @@ class GetMoviesService
      * @param string $queryString
      * @return \Illuminate\Http\Client\Response
      */
-    public function searchMoviesForPaginator(string $querySearch,int $pageNumber): \Illuminate\Http\Client\Response
+    public function searchMoviesForPaginator(string $querySearch, int $pageNumber): \Illuminate\Http\Client\Response
     {
-        return Http::get($this->url . $querySearch.'&page='.$pageNumber);
+        return Http::get($this->url . $querySearch . '&page=' . $pageNumber);
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Client\Response
+     */
+    public function searchMoviesById(int $id)
+    {
+        $urlById = $this->constructStringById($id);
+        return Http::get($urlById);
     }
 }
