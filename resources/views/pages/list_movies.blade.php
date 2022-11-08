@@ -26,7 +26,7 @@
         </div>
         <hr>
         @foreach ($movies->results as $movie)
-            <div class="col-md-4 border border-end-0">
+            <div class="col-md-4 p-2 my-3 border border-end-0">
                 <p class="h3 text-center">{{ $movie->title }}</p>
                 <figure class="figure">
                     <img src="{{ config('themoviedb.img_url') . $movie->poster_path }}"
@@ -35,7 +35,9 @@
                     </figcaption>
                 </figure>
                 <p>Data de Lançamento: <strong> {{ $movie->release_date ?? 'DD/MM/YY' }} </strong> </p>
-
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <a href="{{ route('alugar', ['id' => $movie->id]) }}" class="btn btn-outline-primary my-4">Alugar</a>
+                </div>
             </div>
         @endforeach
 
@@ -53,6 +55,10 @@
                         <a class="page-link" href="{{ route('paginator', ['pageNumber' => $i]) }}">{{ $i }}</a>
                     </li>
                 @endfor
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature/botao-alugar
             </ul>
         </nav>
     </div>

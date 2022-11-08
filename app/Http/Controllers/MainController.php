@@ -58,4 +58,8 @@ class MainController extends Controller
         //dd($chaveRedis,$dataObject);
         return view('pages.list_movies', ['movies' => $dataObject]);
     }
+
+    public function alugarFilme(int $id)
+    {
+    }
 }
