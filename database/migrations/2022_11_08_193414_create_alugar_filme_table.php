@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('filme_id');
             $table->string('nome',50);
             $table->string('email',100);
-            $table->date('data_expiracao');
+            $table->dateTime('data_expiracao');
             $table->timestamps();
         });
     }

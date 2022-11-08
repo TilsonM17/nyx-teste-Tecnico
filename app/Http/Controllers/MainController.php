@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\PaginationHelper;
 use App\Http\Requests\AlugarSubmitRequest;
 use App\Http\Requests\SearchRequest;
+use App\Models\AlugarFilme;
 use App\Services\GetMoviesService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -73,6 +74,13 @@ class MainController extends Controller
 
     public function alugarFilmeSubmit(AlugarSubmitRequest $request)
     {
-        
+        AlugarFilme::create([
+            'filme_id' => $request->input('movie_id'),
+            'nome' => $request->input('txt_nome'),
+            'email' => $request->input('txt_email'),
+            'data_expiracao' => now()->addDays(2)
+        ]);
+
+        return redirect()->route('home_page')->with('status', 'Alugado com sucesso');
     }
 }

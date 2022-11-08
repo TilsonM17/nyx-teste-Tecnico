@@ -19,6 +19,8 @@
     <form method="POST" action="{{ route('alugarSubmit') }}">
         @csrf
         <div class="form-group">
+
+            <input type="hidden" name="movie_id" value="{{$movie->id}}">
             <label for="exampleInputPassword1">Nome</label>
             <input type="text" class="form-control" id="exampleInputPassword1" name="txt_nome"
                 placeholder="Digite seu Nome">
