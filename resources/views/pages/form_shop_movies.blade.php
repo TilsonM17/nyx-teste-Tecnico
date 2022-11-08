@@ -14,13 +14,13 @@
         </figure>
         <p>Para poder alugar este filme, porfavor preencha o formulario.</p>
     </div>
-    
+
 
     <form method="POST" action="{{ route('alugarSubmit') }}">
         @csrf
         <div class="form-group">
 
-            <input type="hidden" name="movie_id" value="{{$movie->id}}">
+            <input type="hidden" name="movie_id" value="{{ $movie->id }}">
             <label for="exampleInputPassword1">Nome</label>
             <input type="text" class="form-control" id="exampleInputPassword1" name="txt_nome"
                 placeholder="Digite seu Nome">
@@ -33,6 +33,7 @@
             <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com ninguém.</small>
         </div>
         <button type="submit" class="btn btn-primary">Alugar</button>
+        <a href="{{ route('home_page') }}" class="btn btn-danger">Voltar</a>
     </form>
 
 @endsection
