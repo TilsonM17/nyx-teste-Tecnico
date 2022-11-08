@@ -31,7 +31,8 @@
                 <figure class="figure">
                     <img src="{{ config('themoviedb.img_url') . $movie->poster_path }}"
                         class="img-thumbnail rounded mx-auto d-block" alt="Imagem de Capa">
-                    <figcaption class="figure-caption">{{ $movie->overview ?? 'Não foi forneçido uma descrição.' }}</figcaption>
+                    <figcaption class="figure-caption">{{ $movie->overview ?? 'Não foi forneçido uma descrição.' }}
+                    </figcaption>
                 </figure>
                 <p>Data de Lançamento: <strong> {{ $movie->release_date ?? 'DD/MM/YY' }} </strong> </p>
 
@@ -49,15 +50,9 @@
             <ul class="pagination">
                 @for ($i = 1; $i < $movies->total_pages; $i++)
                     <li class="page-item">
-                        <a class="page-link" href="{{ route('paginator',['pageNumber' => $i]) }}">{{ $i }}</a>
+                        <a class="page-link" href="{{ route('paginator', ['pageNumber' => $i]) }}">{{ $i }}</a>
                     </li>
                 @endfor
-                {{--
-            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            --}}
             </ul>
         </nav>
     </div>
