@@ -55,10 +55,6 @@
                         <a class="page-link" href="{{ route('paginator', ['pageNumber' => $i]) }}">{{ $i }}</a>
                     </li>
                 @endfor
-<<<<<<< HEAD
-=======
-
->>>>>>> feature/botao-alugar
             </ul>
         </nav>
     </div>
