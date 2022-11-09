@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MainController;
+use App\Models\AlugarFilme;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [MainController::class, 'index'])->name('home_page');
 
-Route::post('/search', [MainController::class, 'search'])->name("pesquisar");
+Route::prefix('/')->group(function () {
+    Route::post('search', [MainController::class, 'search'])->name("pesquisar");
+    Route::get('list', [MainController::class, 'listMovies'])->name('list');
+    Route::get('page/{pageNumber}', [MainController::class, 'paginator'])->name('paginator');
+    Route::get('alugar/{id}', [MainController::class, 'alugarFilme'])->name('alugar');
+    Route::post('alugar', [MainController::class, 'alugarFilmeSubmit'])->name('alugarSubmit');
+});
 
-Route::get('/list',[MainController::class,'listMovies'])->name('list');
-
-Route::get('/page/{pageNumber}', [MainController::class,'paginator'])->name('paginator');
-
-Route::get('/alugar/{id}',[MainController::class,'alugarFilme'])->name('alugar');
-
-Route::post('/alugar',[MainController::class,'alugarFilmeSubmit'])->name('alugarSubmit');
+Route::prefix('/admin')->group(function () {
+    Route::get('/', [AdminController::class, 'listarTodosAlugueis'])->name('listarTudo');
+});
