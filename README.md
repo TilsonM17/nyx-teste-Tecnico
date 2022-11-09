@@ -65,3 +65,13 @@ Na imagem mostra que o nosso container esta a rodar, copie o CONTAINER ID, vamos
 
 
 Pode acessar o [localhost](http://localhost).
+
+
+ ## Rodar os Testes
+
+ Entre no modo root e execute os testes.
+
+    $ ./vendor/bin/sail root-shell
+
+    //Rodar os testes
+    $  php artisan test
