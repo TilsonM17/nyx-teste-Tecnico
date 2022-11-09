@@ -2,6 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\AlugarFilme;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Benchmark;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
 class GetMoviesService
@@ -56,5 +60,29 @@ class GetMoviesService
     {
         $urlById = $this->constructStringById($id);
         return Http::get($urlById);
+    }
+
+    /**
+     * 
+     * @return \Illuminate\Support\Collection
+     */
+    public function getInformationAboutMovies($alugarFilme)
+    {
+        $titulos = [];
+        $alugarFilme->map(function ($item) use (&$titulos) {
+            $titulos[$item->filme_id] = $this->searchMoviesById($item->filme_id)
+                ->object()
+                ->original_title;
+        });
+        return $this->joinInformationMovies($titulos, $alugarFilme);
+    }
+
+    private function joinInformationMovies(array $titulos, \Illuminate\Support\Collection $filmes)
+    {
+        $filmes->map(function ($item) use ($titulos) {
+            $item['nome_filme'] = $titulos[$item->filme_id];
+        });
+
+       return $filmes;
     }
 }
