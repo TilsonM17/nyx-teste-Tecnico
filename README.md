@@ -90,3 +90,6 @@ Pode acessar o [localhost](http://localhost).
 
     //Rodar os testes
     $  php artisan test
+
+
+**NOTA:** Se por algum motivo ao executar o comando acima de testes e ele retornar o erro  `Test directory "/var/www/html/./tests/Unit" not found`, crie uma pasta Unit dentro do directorio `tests`
