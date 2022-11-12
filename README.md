@@ -38,7 +38,7 @@ Se a resposta for similar a esta que esta na imagem, podemos avançar para o pro
 
 Na imagem mostra que o nosso container esta a rodar, copie o CONTAINER ID, vamos entrar dentro do container `sail-8.1/app`, depois instale as dependencias do projecto e execute o seguinte.
 
-    $ docker exec -it e7c9570281c9 bash 
+    $ docker exec -it [Conatiner_ID] bash 
 
     // De permissão a pasta storage
     $ chmod -R 777 storage
@@ -62,6 +62,21 @@ Na imagem mostra que o nosso container esta a rodar, copie o CONTAINER ID, vamos
 
     //Executar os containers
     $ ./vendor/bin/sail up 
+
+Agora uma coisa importante é rodar as migrações.
+
+    //Entrar no modo Root
+    $ ./vendor/bin/sail root-shell
+
+    //Rodar as migrate
+    $ php artisan migrate
+
+
+No arquivo .env.example ja vem com o valor de `MOVIE_KEY` definido, esta variavel contem a chave da api que estamos a usar,deixei o valor da chave no .env.example para maior agilidade.
+
+Mas, esteja avontade para definir o seu valor
+
+    MOVIE_KEY='seu valor'
 
 
 Pode acessar o [localhost](http://localhost).
