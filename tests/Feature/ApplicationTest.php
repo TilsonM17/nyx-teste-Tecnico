@@ -39,12 +39,4 @@ class ApplicationTest extends TestCase
         $response->assertRedirect('list');
     }
 
-    /**
-     * @test
-     */
-    public function test_testar_dados_enviados_para_view()
-    {   //Http::fake();
-        $response = $this->get('/list');
-        $response->assertViewHas('movies');
-    }
 }
