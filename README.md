@@ -38,7 +38,7 @@ Se a resposta for similar a esta que esta na imagem, podemos avançar para o pro
 
 Na imagem mostra que o nosso container esta a rodar, copie o CONTAINER ID, vamos entrar dentro do container `sail-8.1/app`, depois instale as dependencias do projecto e execute o seguinte.
 
-    $ docker exec -it [Conatiner_ID] bash 
+    $ docker exec -it [Container_ID] bash 
 
     // De permissão a pasta storage
     $ chmod -R 777 storage
